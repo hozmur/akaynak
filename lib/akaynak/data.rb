@@ -1,6 +1,6 @@
 module AKaynak
 	class Data
-		def self.get_currency(opts={})
+		def self.get_currency(_opts={})
 			final_result = {status: false, error_code: nil, error_message: nil}
 			#valid_options = opts.only(:from, :start_date, :stop_date, :turkish)
 			#valid_options.merge!(:start_date => NetGSM::DATE.now) unless valid_options[:start_date]
