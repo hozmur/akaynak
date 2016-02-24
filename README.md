@@ -1,17 +1,17 @@
 
 
-require 'altinkaynak_data.rb'
+ require 'altinkaynak_data.rb'
 
-AKaynak.configure do |config|
-	config.usercode = 'AltinkaynakWebServis'
-	config.password = 'AltinkaynakWebServis'
-end
-
-result = AKaynak::Data.get_currency()
-puts result.inspect
-
-puts result[:result]["Kurlar"]["Kur"]
-puts result[:result]["Kurlar"]["Kur"].select { |x| x["Kod"] == "USD"}.first["Alis"]
+ AKaynak.configure do |config|
+ 	config.usercode = 'AltinkaynakWebServis'
+ 	config.password = 'AltinkaynakWebServis'
+ end
+ 
+ result = AKaynak::Data.get_currency()
+ puts result.inspect
+ 
+ puts result[:result]["Kurlar"]["Kur"]
+ puts result[:result]["Kurlar"]["Kur"].select { |x| x["Kod"] == "USD"}.first["Alis"]
 
 
 Versions
