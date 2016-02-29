@@ -29,7 +29,6 @@ module AKaynak
 </soapenv:Body>
 </soapenv:Envelope>"
 
-		 	#puts result
 		 	return result
 		end
 	end
