@@ -25,6 +25,7 @@ AKaynak is a class for getting currency data from www.altinkaynak.com webService
 ## Versions
 0.0
 - Initial version for getting currency data
+
 0.1
 - Initial version for getting gold data
 
