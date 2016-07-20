@@ -10,7 +10,22 @@ module AKaynak
 
 			response = send_request(body)
 
-			result = parse_response(response)
+			result = parse_response_currency(response)
+			if result
+				final_result[:status] = true
+				final_result[:result] = result
+			end
+			return final_result
+		end
+
+		def self.get_gold(_opts={})
+			final_result = {status: false, error_code: nil, error_message: nil}
+
+			body = AKaynak::XmlBody.get_gold()
+
+			response = send_request(body)
+
+			result = parse_response_gold(response)
 			if result
 				final_result[:status] = true
 				final_result[:result] = result
@@ -49,13 +64,26 @@ module AKaynak
 		    return response.body
 		end
 
-		def self.parse_response(body)
+		def self.parse_response_currency(body)
 			require 'active_support/core_ext/hash/conversions'
 			begin
 				result_hash = Hash.from_xml(body)
-				result_xml = result_hash["Envelope"]['Body']["GetCurrencyResponse"]["GetCurrencyResult"]
+				result_xml = result_hash["Envelope"]["Body"]["GetCurrencyResponse"]["GetCurrencyResult"]
 				currency_hash = Hash.from_xml(result_xml)
 				return currency_hash
+			rescue Exception => e
+				puts "ERROR: #{e.message}"
+				return nil
+			end
+		end
+
+		def self.parse_response_gold(body)
+			require 'active_support/core_ext/hash/conversions'
+			begin
+				result_hash = Hash.from_xml(body)
+				result_xml = result_hash["Envelope"]["Body"]["GetGoldResponse"]["GetGoldResult"]
+				gold_hash = Hash.from_xml(result_xml)
+				return gold_hash
 			rescue Exception => e
 				puts "ERROR: #{e.message}"
 				return nil

@@ -13,11 +13,21 @@ AKaynak is a class for getting currency data from www.altinkaynak.com webService
  
  puts result[:result]["Kurlar"]["Kur"]
  puts result[:result]["Kurlar"]["Kur"].select { |x| x["Kod"] == "USD"}.first["Alis"]
+
+ result = AKaynak::Data.get_gold()
+ puts result.inspect
+
+ puts result[:result]["Kurlar"]["Kur"]
+ puts result[:result]["Kurlar"]["Kur"].select { |x| x["Kod"] == "A"}.first["Ata Cumhuriyet"]
+
 ```
 
 ## Versions
 0.0
 - Initial version for getting currency data
+
+0.1
+- Initial version for getting gold data
 
 
 ## TO DO
